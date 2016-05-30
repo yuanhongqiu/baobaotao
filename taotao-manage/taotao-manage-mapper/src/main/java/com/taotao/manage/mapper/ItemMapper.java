@@ -16,7 +16,7 @@ import com.taotao.manage.pojo.Item;
 
 
 /**
- * 此类描述的是：
+ * 此类描述的是：商品mapper
  * @author: yuanhongqiu
  * @since : 2016年5月30日
  */

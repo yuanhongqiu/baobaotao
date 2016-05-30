@@ -5,6 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * 
+ * 此类描述的是：商品描述
+ * @author: yuanhongqiu
+ * @since : 2016年5月30日
+ */
 @Entity(name="tb_item_desc")
 public class ItemDesc extends BasePojo{
     

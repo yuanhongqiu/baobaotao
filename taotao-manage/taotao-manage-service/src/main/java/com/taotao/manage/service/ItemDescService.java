@@ -19,7 +19,7 @@ import com.taotao.manage.pojo.ItemDesc;
 
 
 /**
- * 此类描述的是：
+ * 此类描述的是：商品描述service
  * @author: yuanhongqiu
  * @since : 2016年5月30日
  */

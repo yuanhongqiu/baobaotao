@@ -37,9 +37,7 @@ public abstract class BaseService<T extends BasePojo> {
     @SuppressWarnings("unchecked")
     public BaseService() {
         super();
-
         Type type = this.getClass().getGenericSuperclass();
-
         ParameterizedType pType = (ParameterizedType) type;
         this.clazz = (Class<T>) pType.getActualTypeArguments()[0];
     }
@@ -75,9 +73,7 @@ public abstract class BaseService<T extends BasePojo> {
      * @return
      */
     public Integer queryCounts() {
-
         return this.getMapper().selectCount(null);
-
     }
 
     /**
@@ -102,7 +98,7 @@ public abstract class BaseService<T extends BasePojo> {
      * @param rows
      * @return
      */
-    public PageInfo querByPage(T t, Integer page, Integer rows) {
+    public PageInfo<T> querByPage(T t, Integer page, Integer rows) {
         PageHelper.startPage(page, rows);
         List<T> list = this.getMapper().select(t);
         return new PageInfo<T>(list);
@@ -129,8 +125,12 @@ public abstract class BaseService<T extends BasePojo> {
      * @return
      */
     public Integer save(T t) {
-        t.setCreated(new Date());
-        t.setUpdated(t.getCreated());
+        if(t.getCreated() == null){
+            t.setCreated(new Date());
+            t.setUpdated(t.getCreated());
+        }else{
+            t.setUpdated(t.getCreated());
+        }
         return this.getMapper().insert(t);
     }
     
