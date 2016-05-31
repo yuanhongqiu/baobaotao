@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 /**
  * 
- * 此类描述的是：
+ * 此类描述的是：商品
  * @author: yuanhongqiu
  * @since : 2016年5月30日
  */
