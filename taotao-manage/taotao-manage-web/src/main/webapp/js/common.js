@@ -22,9 +22,9 @@ Date.prototype.format = function(format){
 var TT = TAOTAO = {
 	// 编辑器参数
 	kingEditorParams : {
-		filePostName  : "uploadFile",
-		uploadJson : '/rest/pic/upload',
-		dir : "image"
+		filePostName  : "uploadFile",//上传文件名
+		uploadJson : '/rest/pic/upload',//路径
+		dir : "image"//文件类型
 	},
 	// 格式化时间
 	formatDateTime : function(val,row){
@@ -59,8 +59,11 @@ var TT = TAOTAO = {
     },
     // 初始化图片上传组件
     initPicUpload : function(data){
+    	//class选择器。查找所有的进行遍历
     	$(".picFileUpload").each(function(i,e){
+    		//转换为jquery对象
     		var _ele = $(e);
+    		//寻找同辈元素<div>
     		_ele.siblings("div.pics").remove();
     		_ele.after('\
     			<div class="pics">\
@@ -75,8 +78,11 @@ var TT = TAOTAO = {
         			}
         		}
         	}
+        	//绑定事件
         	$(e).unbind('click').click(function(){
+        		//查找父标签为form的元素  提高代码的重用性
         		var form = $(this).parentsUntil("form").parent("form");
+        		//加载图片上传组件
         		KindEditor.editor(TT.kingEditorParams).loadPlugin('multiimage',function(){
         			var editor = this;
         			editor.plugin.multiImageDialog({
