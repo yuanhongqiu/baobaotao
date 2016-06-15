@@ -1,38 +1,45 @@
 package com.taotao.manage.pojo;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 
  * 此类描述的是：商品描述
+ * 
  * @author: yuanhongqiu
  * @since : 2016年5月30日
  */
-@Entity(name="tb_item_desc")
-public class ItemDesc extends BasePojo{
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long itemId;
+@Table(name = "tb_item_desc")
+public class ItemDesc extends BasePojo {
 
-    private String itemDesc;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long itemId;
 
-    public Long getItemId() {
-        return itemId;
-    }
+	private String itemDesc;
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
+	public Long getItemId() {
+		return itemId;
+	}
 
-    public String getItemDesc() {
-        return itemDesc;
-    }
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
 
-    public void setItemDesc(String itemDesc) {
-        this.itemDesc = itemDesc;
-    }
+	public String getItemDesc() {
+		return itemDesc;
+	}
+
+	public void setItemDesc(String itemDesc) {
+		this.itemDesc = itemDesc;
+	}
+
+	@Override
+	public String toString() {
+		return "ItemDesc [itemId=" + itemId + ", itemDesc=" + itemDesc + "]";
+	}
+
 }

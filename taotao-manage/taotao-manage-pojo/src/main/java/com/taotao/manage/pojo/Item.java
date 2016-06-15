@@ -1,108 +1,118 @@
 package com.taotao.manage.pojo;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 
  * 此类描述的是：商品
+ * 
  * @author: yuanhongqiu
  * @since : 2016年5月30日
  */
-@Entity(name="tb_item")
+@Table(name = "tb_item")
 public class Item extends BasePojo {
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
 
-    private String title;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String sellPoint;
+	private String title;
 
-    private Long price;
+	private String sellPoint;
 
-    private Integer num;
+	private Long price;
 
-    private String barcode;
+	private Integer num;
 
-    private String image;
+	private String barcode;
 
-    private Long cid;
+	private String image;
 
-    private Byte status;
+	private Long cid;
 
-    public Long getId() {
-        return id;
-    }
+	private Byte status;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getSellPoint() {
-        return sellPoint;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setSellPoint(String sellPoint) {
-        this.sellPoint = sellPoint;
-    }
+	public String getSellPoint() {
+		return sellPoint;
+	}
 
-    public Long getPrice() {
-        return price;
-    }
+	public void setSellPoint(String sellPoint) {
+		this.sellPoint = sellPoint;
+	}
 
-    public void setPrice(Long price) {
-        this.price = price;
-    }
+	public Long getPrice() {
+		return price;
+	}
 
-    public Integer getNum() {
-        return num;
-    }
+	public void setPrice(Long price) {
+		this.price = price;
+	}
 
-    public void setNum(Integer num) {
-        this.num = num;
-    }
+	public Integer getNum() {
+		return num;
+	}
 
-    public String getBarcode() {
-        return barcode;
-    }
+	public void setNum(Integer num) {
+		this.num = num;
+	}
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
+	public String getBarcode() {
+		return barcode;
+	}
 
-    public String getImage() {
-        return image;
-    }
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+	public String getImage() {
+		return image;
+	}
 
-    public Long getCid() {
-        return cid;
-    }
+	public void setImage(String image) {
+		this.image = image;
+	}
 
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
+	public Long getCid() {
+		return cid;
+	}
 
-    public Byte getStatus() {
-        return status;
-    }
+	public void setCid(Long cid) {
+		this.cid = cid;
+	}
 
-    public void setStatus(Byte status) {
-        this.status = status;
-    }
+	public Byte getStatus() {
+		return status;
+	}
+
+	public void setStatus(Byte status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", title=" + title + ", sellPoint="
+				+ sellPoint + ", price=" + price + ", num=" + num
+				+ ", barcode=" + barcode + ", image=" + image + ", cid=" + cid
+				+ ", status=" + status + "]";
+	}
+	
 }

@@ -12,8 +12,8 @@
 package com.taotao.manage.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.github.abel533.mapper.Mapper;
 import com.taotao.manage.mapper.ItemMapper;
 import com.taotao.manage.pojo.Item;
 
@@ -23,14 +23,11 @@ import com.taotao.manage.pojo.Item;
  * @author: yuanhongqiu
  * @since : 2016年5月30日
  */
+@Service
 public class ItemService extends BaseService<Item>{
     
     @Autowired
     private ItemMapper itemMapper;
 
-    @Override
-    public Mapper<Item> getMapper() {
-        return itemMapper;
-    }
 
 }

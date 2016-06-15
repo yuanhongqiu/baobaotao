@@ -16,6 +16,8 @@ import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.github.abel533.entity.Example;
 import com.github.abel533.mapper.Mapper;
 import com.github.pagehelper.PageHelper;
@@ -29,8 +31,13 @@ import com.taotao.manage.pojo.BasePojo;
  * @since : 2016年5月27日
  */
 public abstract class BaseService<T extends BasePojo> {
+	
+	@Autowired
+	private Mapper<T> mapper;
 
-    public abstract Mapper<T> getMapper();
+    public Mapper<T> getMapper(){
+    	return mapper;
+    }
 
     private Class<T> clazz;
 
@@ -85,7 +92,7 @@ public abstract class BaseService<T extends BasePojo> {
      * @return
      */
     public List<T> queryByCondition(T t) {
-        return this.getMapper().selectByExample(t);
+        return this.getMapper().select(t);
     }
 
     /**

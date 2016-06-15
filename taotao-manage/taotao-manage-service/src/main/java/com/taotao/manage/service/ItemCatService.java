@@ -11,9 +11,11 @@
  */
 package com.taotao.manage.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
-import com.github.abel533.mapper.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.taotao.manage.mapper.ItemCatMapper;
 import com.taotao.manage.pojo.ItemCat;
 
@@ -23,14 +25,21 @@ import com.taotao.manage.pojo.ItemCat;
  * @author: yuanhongqiu
  * @since : 2016年5月30日
  */
+@Service
 public class ItemCatService extends BaseService<ItemCat>{
     
     @Autowired
     private ItemCatMapper itemCatMapper;
-
-    @Override
-    public Mapper<ItemCat> getMapper() {
-        return itemCatMapper;
+    
+    /**
+     * 根据父节点ID查询所有节点
+     * @return
+     */
+    public List<ItemCat> queryListItemCatByParentId(Long parentId){
+    	ItemCat itemCat = new ItemCat();
+    	itemCat.setParentId(parentId);
+    	return this.queryByCondition(itemCat);
     }
+
 
 }

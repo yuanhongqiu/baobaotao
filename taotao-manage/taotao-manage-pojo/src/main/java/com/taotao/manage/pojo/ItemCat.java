@@ -1,9 +1,9 @@
 package com.taotao.manage.pojo;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 
@@ -11,7 +11,7 @@ import javax.persistence.Id;
  * @author: yuanhongqiu
  * @since : 2016年5月30日
  */
-@Entity(name="tb_item_cat")
+@Table(name="tb_item_cat")
 public class ItemCat extends BasePojo{
     
     @Id
@@ -27,6 +27,15 @@ public class ItemCat extends BasePojo{
     private Integer sortOrder;
 
     private Boolean isParent;
+    
+    // 扩展easyui的text属性
+    public String getText() {
+        return this.name;
+    }
+
+    public String getState() {
+        return this.isParent ? "closed" : "open";
+    }
 
     public Long getId() {
         return id;
@@ -75,4 +84,12 @@ public class ItemCat extends BasePojo{
     public void setIsParent(Boolean isParent) {
         this.isParent = isParent;
     }
+
+	@Override
+	public String toString() {
+		return "ItemCat [id=" + id + ", parentId=" + parentId + ", name="
+				+ name + ", status=" + status + ", sortOrder=" + sortOrder
+				+ ", isParent=" + isParent + "]";
+	}
+    
 }
