@@ -16,7 +16,6 @@ import javax.persistence.Table;
 public class ItemDesc extends BasePojo {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long itemId;
 
 	private String itemDesc;

@@ -33,7 +33,7 @@ public class Item extends BasePojo {
 
 	private Long cid;
 
-	private Byte status;
+	private Integer status;
 
 	public Long getId() {
 		return id;
@@ -99,11 +99,11 @@ public class Item extends BasePojo {
 		this.cid = cid;
 	}
 
-	public Byte getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(Byte status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
