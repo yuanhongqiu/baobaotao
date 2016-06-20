@@ -19,8 +19,7 @@ import com.taotao.manage.web.bean.EasyUIResult;
 @Controller
 public class ItemController {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(ItemController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ItemController.class);
 
 	@Autowired
 	private ItemService itemService;
@@ -33,13 +32,12 @@ public class ItemController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> saveItem(Item item,
-			@RequestParam("desc") String desc) {
+	public ResponseEntity<Void> saveItem(Item item, @RequestParam("desc") String desc, @RequestParam("itemParams") String itemParam) {
 		try {
 			if (LOGGER.isDebugEnabled()) {
-				LOGGER.debug("新增商品传入的参数是：item = {}，desc={}", item, desc);
+				LOGGER.debug("新增商品传入的参数是：item = {}，desc={}，itemParam={}", item, desc,itemParam);
 			}
-			this.itemService.saveItem(item, desc);
+			this.itemService.saveItem(item, desc,itemParam);
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug("新增商品成功！item = {}", item.getId());
 			}
@@ -56,18 +54,36 @@ public class ItemController {
 
 	/**
 	 * 分页查询商品
+	 * 
 	 * @param page
 	 * @param rows
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<EasyUIResult> queryItemListByPage(
-			@RequestParam(value = "page", defaultValue = "1") Integer page,
+	public ResponseEntity<EasyUIResult> queryItemListByPage(@RequestParam(value = "page", defaultValue = "1") Integer page,
 			@RequestParam(value = "rows", defaultValue = "30") Integer rows) {
 		try {
-			PageInfo<Item> pageInfo = this.itemService.querByPage( page, rows);
-			EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(),pageInfo.getList());
+			PageInfo<Item> pageInfo = this.itemService.querByPage(page, rows);
+			EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(), pageInfo.getList());
 			return ResponseEntity.ok().body(easyUIResult);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
+
+	/**
+	 * 更新商品
+	 * 
+	 * @param item
+	 * @param desc
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.PUT)
+	public ResponseEntity<Void> updateItem(Item item, @RequestParam("desc") String desc) {
+		try {
+			this.itemService.updateItem(item, desc);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

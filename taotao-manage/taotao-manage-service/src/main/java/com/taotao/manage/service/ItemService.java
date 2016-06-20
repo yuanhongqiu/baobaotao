@@ -11,17 +11,14 @@
  */
 package com.taotao.manage.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.abel533.entity.Example;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.taotao.manage.mapper.ItemMapper;
 import com.taotao.manage.pojo.Item;
 import com.taotao.manage.pojo.ItemDesc;
+import com.taotao.manage.pojo.ItemParamItem;
 
 
 /**
@@ -36,13 +33,17 @@ public class ItemService extends BaseService<Item>{
     private ItemDescService itemDescService;
     
     @Autowired
+    private ItemParamItemService itemParamItemService;
+    
+    
+    @Autowired
     private ItemMapper itemMapper;
 
     /**
      * 保存商品
      * @param item
      */
-	public void saveItem(Item item,String desc) {
+	public void saveItem(Item item,String desc,String paramData) {
 		item.setId(null);
 		item.setStatus(1);
 		super.save(item);
@@ -51,6 +52,12 @@ public class ItemService extends BaseService<Item>{
 		itemDesc.setItemId(item.getId());
 		itemDesc.setItemDesc(desc);
 		this.itemDescService.save(itemDesc);
+		
+		ItemParamItem itemParamItem = new ItemParamItem();
+		itemParamItem.setId(null);
+		itemParamItem.setItemId(item.getId());
+		itemParamItem.setParamData(paramData);
+		itemParamItemService.save(itemParamItem);
 	}
 
 	/**
@@ -75,6 +82,21 @@ public class ItemService extends BaseService<Item>{
 			e.printStackTrace();
 		}
 		return pageInfo;
+	}
+
+	/**
+	 * 更新商品
+	 * @param item
+	 * @param desc
+	 */
+	public void updateItem(Item item, String desc) {
+		super.updateSelective(item);
+		
+		ItemDesc itemDesc = new ItemDesc();
+		itemDesc.setItemId(item.getId());
+		itemDesc.setItemDesc(desc);
+		this.itemDescService.updateSelective(itemDesc);
+		
 	}
 
 

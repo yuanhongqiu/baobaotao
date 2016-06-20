@@ -123,7 +123,7 @@ public abstract class BaseService<T extends BasePojo> {
 	 * @return
 	 */
 	public T queryOne(T t) {
-		return this.getMapper().select(t).get(0);
+		return this.getMapper().selectOne(t);
 	}
 
 	/**
